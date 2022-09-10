@@ -46,7 +46,7 @@ function getTurma() {
     }
     return Turma;
 }
-turma = getTurma();
+turma = getTurma().toUpperCase();
 
 function getCombo(id) {
     let combo = document.getElementById(id);
@@ -99,7 +99,7 @@ function dataMount(data) {
             aluno.disciplina = disciplina;
             dataStudents += disciplina + ","
 
-            if (turma.includes("EF")) {
+            if (anoSerie.includes("EF")) {
                 // console.log(`"ModalidadeEnsino": "Fundamental"`);
                 aluno.modalidadeEnsino = "Fundamental";
                 dataStudents += "Fundamental,"
@@ -141,6 +141,6 @@ Array.from($$("body table tr *")).forEach((el) => {
 
 });
 
-fileName = `${anoSerie} - ${turma} - ${prova} - ${disciplina}"${JSON.stringify(today).hashCode()}".csv`
+fileName = `${anoSerie} - ${turma} - ${prova} - ${disciplina}"${JSON.stringify(today.toLocaleDateString()).hashCode()}".csv`
 
 saveData(dataStudents, fileName);
