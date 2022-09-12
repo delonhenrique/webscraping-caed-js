@@ -1,0 +1,24 @@
+{
+  "name": "webscraping-caed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AutoScrapSD.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delonhenrique/webscraping-caed-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/delonhenrique/webscraping-caed-js/issues"
+  },
+  "homepage": "https://github.com/delonhenrique/webscraping-caed-js#readme",
+  "dependencies": {
+    "chromedriver": "^105.0.0",
+    "delay": "^5.0.0",
+    "selenium-webdriver": "^4.4.0"
+  }
+}
