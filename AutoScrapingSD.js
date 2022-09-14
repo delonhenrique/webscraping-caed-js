@@ -1,12 +1,24 @@
 // Include the chrome driver
 require("chromedriver");
 
-const { execSync } = require('child_process');
+var prompt = require('prompt-sync')();
+
+const $ = require('cheerio');
+
+const sleep = (ms) =>
+    require("child_process")
+        .execSync(`"${process.argv[0]}" -e setTimeout(function(){},${ms})`);
 
 function getByid(id) {
     let promiseElement =
         tab.findElement(swd.By.id(id));
     return promiseElement;
+}
+
+function getByText(text) {
+    let promiseText = tab.findElement(
+        swd.By.linkText(text));
+    return promiseText;
 }
 
 function fillElement(content, field) {
@@ -44,9 +56,11 @@ tabToOpen
     })
     .then(function (usernameBox) {
 
+        // var username = prompt('Informe seu usuário:');
+
         // Step 3 - Entering the username
         return fillElement(username, usernameBox);
-    
+
     })
     .then(function () {
         console.log(
@@ -60,9 +74,11 @@ tabToOpen
     })
     .then(function (passwordBox) {
 
+        // var pass = prompt('Informe a senha:', {echo: '*'});
+
         // Step 5 - Entering the password
         return fillElement(pass, passwordBox);
-        
+
     })
     .then(function () {
         console.log(
@@ -75,20 +91,16 @@ tabToOpen
 
     })
     .then(function (signInBtn) {
-
         // Step 7 - Clicking the Sign In button
         let promiseClickSignIn = signInBtn.click();
         return promiseClickSignIn;
     })
     .then(function () {
 
-        execSync('sleep 1');
+        sleep(1000);
 
         // Step 7 - Finding the Profile button
-        let promiseProfileBtn = tab.findElement(
-            swd.By.linkText("PROATEC")
-        );
-        return promiseProfileBtn;
+        return getByText("PROATEC");
     })
     .then(function (profileBtn) {
 
@@ -99,13 +111,11 @@ tabToOpen
     .then(function () {
         console.log("Successfully signed in SED!");
 
-        execSync('sleep 1');
+        sleep(1000);
 
         // Step 9 - Finding the Pedagógico Link button
-        let promisePedBtn = tab.findElement(
-            swd.By.linkText("Pedagógico")
-        );
-        return promisePedBtn;
+        
+        return getByText("Pedagógico");
     })
     .then(function (pedBtn) {
 
@@ -115,13 +125,10 @@ tabToOpen
     })
     .then(function () {
 
-        execSync('sleep 1');
+        sleep(1000);
 
         // Step 11 - Finding the Pedagógico Link button
-        let promiseCaedBtn = tab.findElement(
-            swd.By.linkText("Plataforma CAEd")
-        );
-        return promiseCaedBtn;
+        return getByText("Plataforma CAEd");
     })
     .then(function (caedBtn) {
 
@@ -130,8 +137,8 @@ tabToOpen
         return promiseClickCaedBtn;
     })
     .then(function () {
-       
-        execSync('sleep 5');
+
+        sleep(5000);
 
         // Step 11 - Finding the Pedagógico Link button
         return getByid("CARD_MONITORAMENTO_ESTUDANTES");
@@ -145,7 +152,7 @@ tabToOpen
     })
     .then(function () {
 
-        execSync('sleep 1');
+        sleep(1000);
 
         // Step 13 - Finding the Pedagógico Link button
         return getByid("BTN_MENU_PAGINA_CADERNO_DE_ATIVIDADES_MONITORAMENTO_RESULTADO");
@@ -156,6 +163,39 @@ tabToOpen
         // Step 14 - Clicking the Sign In button
         let promiseClickPartBtn = partBtn.click();
         return promiseClickPartBtn;
+    })
+    .then(function () {
+
+        sleep(1000);
+
+        // Step 13 - Finding the Pedagógico Link button
+        return getByid("selecty0fuc3bed07cDADOS.VL_FILTRO_ETAPA");
+
+    })
+    .then(function (dropdown) {
+
+        // Step 14 - Clicking the Sign In button
+        return dropdown.findElement(swd.By.xpath("//option[. = '8° ANO EF']")).click();
+
+    })
+    .then(function () {
+
+        sleep(1000);
+
+        // Step 13 - Finding the Pedagógico Link button
+
+        console.log($.html().length);
+
+        console.log($.html());
+        
+        return "";
+
+    })
+    .then(function (el) {
+
+        // Step 14 - Clicking the Sign In button
+        return console.log("\n"+el+"\n");
+
     })
     .then(function () {
         console.log("Terminou com sucesso!");
