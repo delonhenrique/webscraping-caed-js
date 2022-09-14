@@ -98,7 +98,7 @@ tabToOpen
     })
     .then(function () {
         console.log("Successfully signed in SED!");
-        
+
         execSync('sleep 1');
 
         // Step 9 - Finding the Pedagógico Link button
@@ -114,7 +114,7 @@ tabToOpen
         return promiseClickPedBtn;
     })
     .then(function () {
-        
+
         execSync('sleep 1');
 
         // Step 11 - Finding the Pedagógico Link button
@@ -149,7 +149,7 @@ tabToOpen
 
         // Step 13 - Finding the Pedagógico Link button
         return getByid("BTN_MENU_PAGINA_CADERNO_DE_ATIVIDADES_MONITORAMENTO_RESULTADO");
-        
+
     })
     .then(function (partBtn) {
 

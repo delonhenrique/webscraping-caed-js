@@ -19,6 +19,7 @@
   "dependencies": {
     "chromedriver": "^105.0.0",
     "delay": "^5.0.0",
+    "prompt-sync-history": "^1.0.1",
     "selenium-webdriver": "^4.4.0"
   }
 }
