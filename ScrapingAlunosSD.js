@@ -140,7 +140,7 @@ Array.from($$("body table tr *")).forEach((el) => {
     }
 
 });
-
-fileName = `${anoSerie} - ${turma} - ${prova} - ${disciplina}"${JSON.stringify(today.toLocaleDateString()).hashCode()}".csv`
+let hashname = (anoSerie + turma + prova + disciplina + JSON.stringify(today.toLocaleDateString())).toString();
+fileName = `${anoSerie} - ${turma} - ${prova} - ${disciplina}"${hashname.hashCode()}".csv`
 
 saveData(dataStudents, fileName);

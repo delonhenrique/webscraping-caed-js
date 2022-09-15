@@ -1,0 +1,5 @@
+Request URL: https://avaliacaoemonitoramentosaopaulo.caeddigital.net/portal/functions/getDadosResultado
+Request Method: POST
+Status Code: 200 OK
+Remote Address: 177.154.130.12:443
+Referrer Policy: strict-origin-when-cross-origin

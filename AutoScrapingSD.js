@@ -2,6 +2,7 @@
 require("chromedriver");
 
 var prompt = require('prompt-sync')();
+let data;
 
 const $ = require('cheerio');
 
@@ -29,6 +30,7 @@ function fillElement(content, field) {
 
 // Include selenium webdriver
 let swd = require("selenium-webdriver");
+const { Driver } = require("selenium-webdriver/chrome");
 let browser = new swd.Builder();
 let tab = browser.forBrowser("chrome").build();
 
@@ -175,26 +177,22 @@ tabToOpen
     .then(function (dropdown) {
 
         // Step 14 - Clicking the Sign In button
-        return dropdown.findElement(swd.By.xpath("//option[. = '8° ANO EF']")).click();
+        return dropdown.findElement(swd.By.xpath("//option[. = '1ª SÉRIE EM']")).click();
 
     })
     .then(function () {
 
-        sleep(1000);
+        sleep(2000);
 
         // Step 13 - Finding the Pedagógico Link button
-
-        console.log($.html().length);
-
-        console.log($.html());
-        
-        return "";
+        return tab.findElement(swd.By.css("#tbResultado_94f0c .caed_resultado_tabela_row:nth-child(1) > .ng-scope:nth-child(1)"))
 
     })
     .then(function (el) {
 
         // Step 14 - Clicking the Sign In button
-        return console.log("\n"+el+"\n");
+        let promiseElClick = el.click();
+        return promiseElClick;
 
     })
     .then(function () {
